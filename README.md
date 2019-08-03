@@ -45,6 +45,7 @@ Including an example of how to use your role (for instance, with variables passe
       
       vars:
          firewalld_enable: False
+         iptables_enable: False
          install_utilities: True
 
       roles:
