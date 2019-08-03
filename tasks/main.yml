@@ -9,6 +9,15 @@
     state: enabled
     immediate: true
   when: firewalld_enable
+  
+- name: Add iptables rule if required
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 10000
+    jump: ACCEPT
+    comment: open port 10000
+  when: iptables_enable
 
 - name: Add yum repository and gpg key for Redhat platforms
   yum_repository:
