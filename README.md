@@ -26,6 +26,10 @@ Set to True to install various utility packages used by Webmin management functi
 
 Set to True to open port 10000 via firewalld (assumes firewalld is running)
 
+- `iptables_enable`: False
+
+Set to True to open port 10000 via iptables (assumes iptables is running)
+
 Dependencies
 ------------
 
