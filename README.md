@@ -1,11 +1,12 @@
 Role Name
 =========
 
-Ansible role to deploy Webmin web-based linux administration utility.
+Ansible role to deploy Webmin web-based linux administration utility, running as a 
+systemd service.
 
-Webmin service will be available on https://host:10000.
+Webmin service will be available on https://hostip:10000.
 
-Default login will be the credentials of the installer user.
+Default login will be the userid and password of the installer user.
 
 You may get a browser warning about Webmin's default self-sign SSL certificate.
 
@@ -13,18 +14,22 @@ You may get a browser warning about Webmin's default self-sign SSL certificate.
 Requirements
 ------------
 
-Requires root privileges.
+- Installation requires sudo privileges.
+- Systemd for services control.
+- Firewalld for firewall control (if required).
+- Python for Ansible provisioning (note that some minimal distributions do not include python out of the box).
 
 Role Variables
 --------------
 
 - `install_utilities`: False
 
-Set to True to install various utility packages used by Webmin management functions (wget, git, ntpdate, sntp, smartmontools)
+Set to True to install various utility packages used by Webmin management functions (wget, git, ntpdate, sntp, smartmontools).
+Note that some minimal distributions do not support all these tools out of the box and may require interactive installation.
 
 - `firewalld_enable`: False
 
-Set to True to open port 10000 via firewalld (assumes firewalld is running)
+Set to True to open port 10000 via firewalld (assumes firewalld is running).
 
 - `iptables_enable`: False
 
@@ -50,7 +55,7 @@ Including an example of how to use your role (for instance, with variables passe
       vars:
          firewalld_enable: False
          iptables_enable: False
-         install_utilities: True
+         install_utilities: False
 
       roles:
       - semuadmin.webmin
